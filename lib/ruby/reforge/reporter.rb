@@ -75,7 +75,13 @@ module Ruby
       private
 
       def say(message, color = nil)
-        puts Rainbow(message).color(color)
+        Rainbow.enabled = true
+        if color && !color.to_s.empty?
+          output = Rainbow(message).color(color)
+        else
+          output = message
+        end
+        puts output
       end
     end
   end
